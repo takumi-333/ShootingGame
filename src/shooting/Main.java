@@ -66,7 +66,13 @@ public class Main {
 	private static Clip mainBGM;
 	
 	private static int selectingData;
-//	private static Clip shotSE;
+	
+	private static int startScreenY = 0;
+	private static boolean isUpMoving = false;
+	private static boolean isDownMoving = false;
+	private static int movingDuration = 20;
+	private static int movingTime = 0;
+	
 	
 	public static void main(String args[]) {
 		SwingUtilities.invokeLater(() -> {
@@ -94,7 +100,6 @@ public class Main {
             } catch(Exception e) {
             	e.printStackTrace();
             }
-            
     		
             panel = gameFrame.panel;
             loop = true;
@@ -137,8 +142,7 @@ public class Main {
 			
 			//Debug用
 			if (Keyboard.isKeyPressed(KeyEvent.VK_D)) {
-	        	System.out.println(player.hp);
-	        	System.out.println("Coins: "  + String.valueOf(player.getCoins()));
+				System.out.println(startScreenY);
 	        	player.gainCoin(20000);
 	        }
 			if (Keyboard.isKeyPressed(KeyEvent.VK_P)) {
@@ -156,6 +160,23 @@ public class Main {
 	// 更新処理
 	private static void update() {
 		switch(screen) {
+		case START:
+			if (isUpMoving || isDownMoving) {
+				movingTime = Math.min(movingTime+1, movingDuration);
+				if (isDownMoving) {
+					startScreenY = -(int)(WindowSize.y * ((float)movingTime / (float)movingDuration));
+				} else {
+					startScreenY = -(int)(WindowSize.y * (1.0f - (float)movingTime / (float)movingDuration));
+				}
+				if (movingTime == movingDuration) {
+					isUpMoving = false;
+					isDownMoving = false;
+					movingTime = 0;
+					break;
+				}
+				
+			}
+			break;
 		case GAME:
 			// playerの状態のupdate
 			player.update();
@@ -206,7 +227,7 @@ public class Main {
 				// ステージ初クリア時の処理
 				if (playerLevel.stageLevel == stageId+1) {
 					playerLevel.stageLevel++;
-					if (playerLevel.stageLevel <= 6) {
+					if (playerLevel.stageLevel <= StageInfos.numStages) {
 						clearMessage.add("ステージ" + String.valueOf(playerLevel.stageLevel) + "解放!");
 					} else {
 						clearMessage.add("全てクリア！");
@@ -255,7 +276,7 @@ public class Main {
 			// 描画のリセット
 			gra.setColor(MyColors.WhiteGray);
 	        gra.fillRect(0, 0, WindowSize.x, WindowSize.y);
-			StartScreen.render(gra, panel, time, stageId);
+			StartScreen.render(gra, panel, time, stageId, startScreenY);
 			break;
 		case GAME:
 			// 描画のリセット
@@ -338,6 +359,19 @@ public class Main {
 	        	screen = EnumScreen.STAGE_SELECT;
 	        	time = 0;
 	        	selectingStage = stageId;
+	        }
+	        
+	        // START画面を上下に遷移
+	        else if (Keyboard.isKeyPressed(KeyEvent.VK_DOWN)) {
+	        	if (!isUpMoving && !isDownMoving && startScreenY == 0) {
+	        		isDownMoving = true;
+	        	}
+	        }
+	        
+	        else if (Keyboard.isKeyPressed(KeyEvent.VK_UP)) {
+	        	if (!isUpMoving && !isDownMoving && startScreenY == -WindowSize.y) {
+	        		isUpMoving = true;
+	        	}
 	        }
 	        break;
 	        
@@ -492,7 +526,7 @@ public class Main {
 		case SAVE_SELECT:
 			if (Keyboard.isKeyPressed(KeyEvent.VK_UP)) {
 				if (menuCursorInterval <= 0) {
-					if (selectingData > 0) {
+					if (selectingData > 1) {
 						selectingData--;
 						menuCursorInterval = menuCursorRate;
 					}
@@ -527,3 +561,4 @@ public class Main {
 		}
     }
 }
+

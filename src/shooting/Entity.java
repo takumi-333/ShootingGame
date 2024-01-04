@@ -171,6 +171,7 @@ public class Entity {
 								(bullet.x+bullet.size >= this.x + part.x) && (bullet.x+bullet.size <= this.x + part.x + part.width) &&
 								(bullet.y +bullet.size >= this.y + part.y - part.height) && (bullet.y + bullet.size <= this.y + part.y + part.height)) {
 							bullet.setSpeed(-bullet.speed);
+							bullet.power *= 2;
 							anotherBullets.add(bullet);
 							bullets.remove(bullet);
 							return;
