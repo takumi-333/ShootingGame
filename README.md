@@ -9,3 +9,5 @@ JavaのSwingを利用したインベーダー風GUIアプリケーションを�
 eclipse上でこのリポジトリをクローンし、
 eclipseで実行してください。
 
+## サンプルイメージ
+<img width="912" alt="title" src="https://github.com/takumi-333/ShootingGame/assets/73085571/2a855e8e-1241-478f-9792-70ffe98877fe">
