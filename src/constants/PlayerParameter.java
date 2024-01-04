@@ -25,13 +25,13 @@ public class PlayerParameter {
 	public static int[] bulletSizeList = {5, 6, 6, 7, 8, 8, 9, 10, 11};
 	public static int[] bulletRateList = {20, 18, 16, 14, 12, 10, 8, 5, 1};
 	
-	public static long[] barrierDurationList = {15, 25 , 40, 60, 100, 140, 180, 250, 500};
+	public static long[] barrierDurationList = {15, 25 , 40, 60, 100, 140, 180, 250, 270};
 	public static long[] barrierRateList = {350, 340, 330, 320, 310, 300, 290, 280, 270};
 	public static int[] barrierTypeList = {1, 2, 2, 3, 3, 4, 4, 5, 5};
 	
-	public static long[] beamDurationList = {1, 2, 3, 4, 6, 8, 10, 12, 25};
-	public static float[] beamPowerRatioList = {1.1f, 1.2f, 1.3f, 1.4f, 1.5f, 1.7f, 1.9f, 2.1f, 3.0f};
-	public static int[] beamRateList = {500, 480, 460, 440, 420, 400, 380, 360, 200};
+	public static long[] beamDurationList = {1, 3, 6, 9, 13, 17, 22, 30, 40};
+	public static float[] beamPowerRatioList = {1.1f, 1.2f, 1.3f, 1.4f, 1.5f, 1.6f, 1.7f, 1.8f, 2.0f};
+	public static int[] beamRateList = {450, 440, 430, 420, 410, 380, 350, 320, 250};
 	
 }
 

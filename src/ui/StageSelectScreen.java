@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import constants.MyColors;
 import constants.StageInfos;
+import lib.Utils;
 import shooting.PlayerLevel;
 
 public class StageSelectScreen {
@@ -112,11 +113,14 @@ public class StageSelectScreen {
 			}
 			
 			// ステージ制限メッセージの描画
-			if (playerLevel.stageLevel <= i) {
+			if (playerLevel.stageLevel <=  i) {
 				String limitString = "未解放";
 				gra.setColor(MyColors.ShortCoinText);
 				gra.drawString(limitString, strX + strW + 20, strY);
-			} 
+			} else if (playerLevel.stageLevel-1 > i){
+				Utils.drawStar(gra, strX + strW + 20, strY-24, 12);
+				
+			}
 			
 		}
 	    

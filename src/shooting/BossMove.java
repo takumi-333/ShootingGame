@@ -16,6 +16,8 @@ public class BossMove {
 			return pattern2(x, deltaX, moveSpeed, time);
 		case 3:
 			return pattern3(x, deltaX, moveSpeed, time);
+		case 4:
+			return pattern4(x, deltaX, moveSpeed, time);
 		default:
 			return 0;
 		}
@@ -62,34 +64,83 @@ public class BossMove {
 	}
 	
 	// -350 ~ 350の間をランダムに動く(-3, 0, 3)
-		public static int pattern3(int x, int deltaX, int moveSpeed, long time) {
-			int delta;
-			int moveRange = 250;
-			// -350 ~ 350の間を動く（画面外にはいかない)
-			if (time % 80 > 0) {
-				delta = moveSpeed;
+	public static int pattern3(int x, int deltaX, int moveSpeed, long time) {
+		int delta;
+		int moveRange = 250;
+		// -350 ~ 350の間を動く（画面外にはいかない)
+		if (time % 80 > 0) {
+			delta = moveSpeed;
+		} else {
+			Random rnd = new Random();
+			int r = rnd.nextInt(10);
+			if (r == 0) {
+				delta = 0;
+			} else if (r <= 2) {
+				delta = -2;
+			} else if (r <= 4) {
+				delta = 2;
+			} else if (r <= 7) {
+				delta = 4;
 			} else {
-				Random rnd = new Random();
-				int r = rnd.nextInt(10);
-				if (r == 0) {
-					delta = 0;
-				} else if (r <= 2) {
-					delta = -2;
-				} else if (r <= 4) {
-					delta = 2;
-				} else if (r <= 7) {
-					delta = 4;
-				} else {
-					delta = -4;
-				}
+				delta = -4;
 			}
-			if (x + delta <= 10 || deltaX + delta <= -moveRange) {
-				delta = -delta;
-			} else if (x + delta >= WindowSize.x - 20 || deltaX + delta >= moveRange) {
-				delta = -delta;
-			}
-			return delta;
 		}
+		if (x + delta <= 10 || deltaX + delta <= -moveRange) {
+			delta = -delta;
+		} else if (x + delta >= WindowSize.x - 20 || deltaX + delta >= moveRange) {
+			delta = -delta;
+		}
+		return delta;
+	}
+	
+	public static int pattern4(int x, int deltaX, int moveSpeed, long time) {
+		int delta;
+		int moveRange = 250;
+		Random rnd = new Random();
+		// -350 ~ 350の間を動く（画面外にはいかない)
+		if (time % 60 > 0) {
+			delta = moveSpeed;
+			
+		} else {
+			int r = rnd.nextInt(20);
+			if (r == 0) {
+				delta = 0;
+			} 
+			else if (r == 1) {
+				delta = -7;
+			}
+			else if (r == 2) {
+				delta = 9;
+			}
+			else if (r <= 4) {
+				delta = -2;
+			} 
+			else if (r <= 6) {
+				delta = 2;
+			} 
+			else if (r <= 8) {
+				delta = 4;
+			} 
+			else if (r <= 10){
+				delta = -4;
+			}
+			else if (r <= 13) {
+				delta = -1;
+			}
+			else if (r <= 16) {
+				delta = -5;
+			}
+			else {
+				delta = 5;
+			}
+		}
+		if (x + delta <= 10 || deltaX + delta <= -moveRange) {
+			delta = -delta;
+		} else if (x + delta >= WindowSize.x - 20 || deltaX + delta >= moveRange) {
+			delta = -delta;
+		}
+		return delta;
+	}
 	
 	
 }

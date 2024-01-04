@@ -18,7 +18,6 @@ public class Player extends Entity {
 	private int motionRangeY = 30;
 	private int deltaY = 0;
 	private int power = 1;
-	private int bulletSpeed;
 	private int bulletSize;
 	
 	private long barrierInterval;
@@ -55,7 +54,7 @@ public class Player extends Entity {
 		super.setBulletRate(PlayerParameter.bulletRateList[playerLevel.bulletRateLevel-1]);
 		power = PlayerParameter.powerList[playerLevel.powerLevel-1];
 		speed = PlayerParameter.speedList[playerLevel.speedLevel-1];
-		bulletSpeed = PlayerParameter.bulletSpeedList[playerLevel.bulletSpeedLevel-1];
+		super.bulletSpeed = PlayerParameter.bulletSpeedList[playerLevel.bulletSpeedLevel-1];
 		bulletSize = PlayerParameter.bulletSizeList[playerLevel.bulletSizeLevel-1];
 		barrierDuration = PlayerParameter.barrierDurationList[playerLevel.barrierLevel-1];
 		barrierRate = PlayerParameter.barrierRateList[playerLevel.barrierLevel-1];

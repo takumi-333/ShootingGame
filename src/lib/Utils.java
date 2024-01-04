@@ -27,7 +27,7 @@ public class Utils {
 		float ratio = (float)interval / (float) bulletRate;
 		gra.setColor(entityColor);
 		if (ratio <= 0.1f) {
-			gra.fillOval(x-6, y, 12, 12);
+			gra.fillOval(x-7, y, 14, 14);
 		}
 		else if (ratio <= 0.3f) {
 			gra.fillOval(x-5, y, 10, 10);
@@ -96,6 +96,30 @@ public class Utils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// 左上の座標と、半径
+	public static void drawStar(Graphics gra, int x, int y, int r) {
+		gra.setColor(MyColors.StarColor);
+		int cx = x + r;
+		int cy = y + r;
+		int n = 10;
+		int theta = -90;
+		int[] posX = new int[n];
+		int[] posY = new int[n];
+		for(int i = 0; i < n; i++) {
+			if (i % 2 == 0) {
+				posX[i] = (int)(r * Math.cos(theta * Math.PI / 180) + cx);
+				posY[i] = (int)(r * Math.sin(theta * Math.PI / 180) + cy);
+			}
+			else {
+				posX[i] = (int)((r/2) * Math.cos(theta * Math.PI / 180) + cx);
+				posY[i] = (int)((r/2) * Math.sin(theta * Math.PI / 180) + cy);
+			}
+			theta += 360 / n;
+		}
+		gra.fillPolygon(posX, posY, n);
+		
 	}
 
 }

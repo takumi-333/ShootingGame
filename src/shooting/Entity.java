@@ -20,6 +20,7 @@ public class Entity {
 	
 	public int bulletRate = 20;
 	public int bulletInterval = 0;
+	protected int bulletSpeed = 5;
 	
 	//damageを食らう間隔
 	protected boolean damaged;
@@ -150,10 +151,6 @@ public class Entity {
 		}
 	}
 	
-	// 各Entityによって異なる
-	private void setParts() {
-		
-	}
 	
 	public void handleHit(List<Bullet> bullets, List<Bullet> anotherBullets) {
 		if (!damaged && !dying) {
@@ -170,8 +167,12 @@ public class Entity {
 								(bullet.y +bullet.size >= this.y + part.y - part.height) && (bullet.y + bullet.size <= this.y + part.y + part.height) ||
 								(bullet.x+bullet.size >= this.x + part.x) && (bullet.x+bullet.size <= this.x + part.x + part.width) &&
 								(bullet.y +bullet.size >= this.y + part.y - part.height) && (bullet.y + bullet.size <= this.y + part.y + part.height)) {
-							bullet.setSpeed(-bullet.speed);
-							bullet.power *= 2;
+							if (bullet.speed < 0) {
+								bullet.setSpeed((-bullet.speed +  2 * bulletSpeed) / 3);
+							} else {
+								bullet.setSpeed(-(bullet.speed + 2 * bulletSpeed) / 3);
+							}
+							bullet.power *= 1.5f;
 							anotherBullets.add(bullet);
 							bullets.remove(bullet);
 							return;

@@ -23,8 +23,10 @@ public class PartsCollection {
 			return bossPattern6();
 		case 7:
 			return bossPattern7();
+		case 8:
+			return defaultEnemyParts();
 		default:
-			return bossPattern1();
+			return new ArrayList<Rectangle>();
 		}
 	}
 	
@@ -32,12 +34,24 @@ public class PartsCollection {
 		switch(barrierPartId) {
 		case 0:
 			return new ArrayList<Rectangle>();
+		case 1:
+			return bossBarrierPattern1();
+		case 3:
+			return bossBarrierPattern3();
+		case 4:
+			return bossBarrierPattern4();
 		case 5:
 			return bossBarrierPattern5();
 		case 6:
 			return bossBarrierPattern6();
 		case 7:
 			return bossBarrierPattern7();
+		case 8:
+			return bossBarrierPattern8();
+		case 9:
+			return bossBarrierPattern9();
+		case 100:
+			return bossAllBarrierPattern();
 		default:
 			return new ArrayList<Rectangle>();
 		}
@@ -65,6 +79,7 @@ public class PartsCollection {
 		return parts;
 	}
 	
+	// 左側
 	public static ArrayList<Rectangle> bossPattern3() {
 		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
 		Rectangle part1 = new Rectangle(-5, -20, 20, 10);
@@ -74,6 +89,8 @@ public class PartsCollection {
 		return parts;
 	}
 	
+	
+	// 右側
 	public static ArrayList<Rectangle> bossPattern4() {
 		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
 		Rectangle part1 = new Rectangle(-15, -20, 20, 10);
@@ -132,24 +149,51 @@ public class PartsCollection {
 		return parts;
 	}
 	
-	public static ArrayList<Rectangle> bossPattern8() {
+	public static ArrayList<Rectangle> bossBarrierPattern8() {
 		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
-		Rectangle part1 = new Rectangle(-2, -4, 4, 4);
-		Rectangle part2 = new Rectangle(-26, -14, 52, 10);
-		Rectangle part3 = new Rectangle(-26, -4, 10, 10);
-		Rectangle part4 = new Rectangle(16, -4, 10, 10);
-		Rectangle part5 = new Rectangle(-16, 6, 4, 4);
-		Rectangle part6 = new Rectangle(12, 6, 4, 4);
+		Rectangle part1 = new Rectangle(-20, 7, 40, 7);
+		Rectangle part2 = new Rectangle(-27, -20, 7, 34);
+		Rectangle part3 = new Rectangle(20, -20, 7, 34);
 		parts.add(part1);
 		parts.add(part2);
 		parts.add(part3);
-		parts.add(part4);
-		parts.add(part5);
-		parts.add(part6);
 		return parts;
 	}
 	
 	
+	public static ArrayList<Rectangle> bossBarrierPattern1() {
+		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
+		Rectangle part1 = new Rectangle(-35, -10, 5, 20);
+		Rectangle part2 = new Rectangle(-35, 5, 15, 5);
+		Rectangle part3 = new Rectangle(20, 5, 15, 5);
+		Rectangle part4 = new Rectangle(30, -10, 5, 20);
+		parts.add(part1);
+		parts.add(part2);
+		parts.add(part3);
+		parts.add(part4);
+		return parts;
+	}
+	
+	public static ArrayList<Rectangle> bossBarrierPattern9() {
+		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
+		Rectangle part1 = new Rectangle(-20, 7, 40, 7);
+		parts.add(part1);
+		return parts;
+	}
+	
+	public static ArrayList<Rectangle> bossBarrierPattern3() {
+		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
+		Rectangle part1 = new Rectangle(17, 3, 24, 4);
+		parts.add(part1);
+		return parts;
+	}
+	
+	public static ArrayList<Rectangle> bossBarrierPattern4() {
+		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
+		Rectangle part1 = new Rectangle(-43, 7, 24, 4);
+		parts.add(part1);
+		return parts;
+	}
 	
 	public static ArrayList<Rectangle> bossBarrierPattern5() {
 		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
@@ -176,6 +220,13 @@ public class PartsCollection {
 		return parts;
 	}
 	
+	public static ArrayList<Rectangle> bossAllBarrierPattern() {
+		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
+		Rectangle part1 = new Rectangle(-10, 0, WindowSize.x + 30, 5);
+		parts.add(part1);
+		return parts;
+	}
+	
 	
 	
 	public static ArrayList<Rectangle> playerParts() {
@@ -190,8 +241,8 @@ public class PartsCollection {
 	
 	public static ArrayList<Rectangle> defaultEnemyParts() {
 		ArrayList<Rectangle> parts = new ArrayList<Rectangle>();
-		Rectangle part1 = new Rectangle(-5, 0, 10, 10);
-		Rectangle part2 = new Rectangle(-10, -10, 20, 10);
+		Rectangle part1 = new Rectangle(-5, -10, 10, 10);
+		Rectangle part2 = new Rectangle(-10, -20, 20, 10);
 		parts.add(part1);
 		parts.add(part2);
 		return parts;

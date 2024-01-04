@@ -23,6 +23,7 @@ public class MyColors {
 	public final static Color PlayerCanBarrierColor = new Color(120, 175, 225);
 	public final static Color DefaultEnemyColor = new Color(255, 64, 0);
 	public final static Color DarkEnemyColor = new Color(5, 7, 10);
+	public final static Color DarkGrayEnemyColor = new Color(50, 42, 38);
 	public final static Color SalmonEnemyColor = new Color(233, 150, 122);
 	public final static Color SummerGreenEnemyColor = new Color(0, 150, 70);
 	public final static Color TailGreenEnemyColor = new Color(0, 106, 108);
@@ -47,4 +48,6 @@ public class MyColors {
 	public final static Color GreenHpColor = new Color(101, 175, 49);
 	public final static Color OrangeHpColor = new Color(245, 120, 10);
 	public final static Color RedHpColor = new Color(250, 85, 80);
+	
+	public final static Color StarColor = new Color(250, 250, 10);
 }

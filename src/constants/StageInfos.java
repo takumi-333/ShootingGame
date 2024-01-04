@@ -10,7 +10,7 @@ import shooting.StageInfo;
 public class StageInfos {
 	
 	// 総ステージ数
-	public static int numStages = 5;
+	public static int numStages = 8;
 	public List<StageInfo> stageInfos;
 	
 	// boss enemy
@@ -34,7 +34,7 @@ public class StageInfos {
 		stage1.bgColor = MyColors.GrayStageBG;
 		
 		// 真ん中から出現
-		BossEnemyStatus enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2, 0, 6, 200, 1, 3, 150, EnumEnemyType.BOSS, 100, 1, MyColors.BossEnemyColor1);
+		BossEnemyStatus enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2, 0, 6, 200, 1, 3, 150, EnumEnemyType.BOSS, 100, 8, MyColors.BossEnemyColor1);
 		enemy1.bulletSpeed = 6;
 		enemy1.movePattern = 2;
 		stage1.enemyStatus.add(enemy1);
@@ -56,10 +56,10 @@ public class StageInfos {
 		
 		// 真ん中から出現
 		// 3体で一体のやつが出現
-		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2, 0, 10, 2000, 2, 3, 135, EnumEnemyType.BOSS, 900, 2, MyColors.BossEnemyColor2);
+		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2, 0, 15, 2500, 3, 3, 135, EnumEnemyType.BOSS, 900, 2, MyColors.BossEnemyColor2);
 		enemy1.bulletSpeed = 7;
 		stage2.enemyStatus.add(enemy1);
-		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2 - 30, 0, 15, 2500, 3, 3, 120, EnumEnemyType.BOSS, 900, 3, MyColors.BossEnemyColor2);
+		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2 - 30, 0, 10, 2000, 2, 3, 120, EnumEnemyType.BOSS, 900, 3, MyColors.BossEnemyColor2);
 		enemy1.bulletSpeed = 8;
 		stage2.enemyStatus.add(enemy1);
 		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2 + 30, 0, 10, 2000, 2, 3, 130, EnumEnemyType.BOSS, 900, 4, MyColors.BossEnemyColor2);
@@ -168,14 +168,124 @@ public class StageInfos {
 		 */
 		
 		StageInfo stage6 = new StageInfo();
-		stage6.numEnemys = 10;
+		stage6.numEnemys = 1;
 		stage6.weakEnemyCoin = 10000;
-		stage6.weakEnemyPower = 50;
-		stage6.weakEnemyRate = 350;
-		stage6.weakEnemyHp = 150;
+		stage6.weakEnemyPower = 6;
+		stage6.weakEnemyRate = 180;
+		stage6.weakEnemyHp = 24;
 		stage6.weakEnemyBulletRate = 50;
-		stage6.weakEnemyColor = MyColors.DarkEnemyColor;
-		stage6.bgColor = MyColors.StageBG5;
+		stage6.weakEnemyColor = MyColors.DefaultEnemyColor;
+		stage6.bgColor = MyColors.GrayStageBG;
+		
+		stage6.hasAttacker = true;
+		stage6.attackerCoin = 5000;
+		stage6.attackerColor = MyColors.DarkEnemyColor;
+		stage6.attackerHp = 15;
+		stage6.attackerRate = 100;
+		stage6.attackerBulletRate = 9000000;
+		
+		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2, 0, 150, 500000, 15, 3, 70, EnumEnemyType.BOSS, 100, 1, MyColors.BossEnemyColor1);
+		enemy1.bulletSpeed = 7;
+		enemy1.movePattern = 2;
+		enemy1.barrierPartId = enemy1.partId;
+		stage6.enemyStatus.add(enemy1);
+		stageInfos.add(stage6);
+		
+		/*
+		 * Stage7
+		 * 背面にバリアを展開
+		 */
+		StageInfo stage7 = new StageInfo();
+		stage7.numEnemys = 5;
+		stage7.weakEnemyCoin = 30000;
+		stage7.weakEnemyPower = 8;
+		stage7.weakEnemyRate = 135;
+		stage7.weakEnemyHp = 20;
+		stage7.weakEnemyBulletRate = 33;
+		stage7.weakEnemyColor = MyColors.DarkEnemyColor;
+		stage7.bgColor = MyColors.StageBG2;
+		
+		stage7.hasAttacker = true;
+		stage7.attackerCoin = 12000;
+		stage7.attackerColor = MyColors.DarkGrayEnemyColor;
+		stage7.attackerHp = 16;
+		stage7.attackerRate = 150;
+		stage7.attackerBulletRate = 300;
+		
+		// 真ん中から出現
+		// 3体で一体のやつが出現
+		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2, 0, 150, 350000, 15, 3, 115, EnumEnemyType.BOSS, 900, 2, MyColors.BossEnemyColor2);
+		enemy1.bulletSpeed = 7;  
+		stage7.enemyStatus.add(enemy1);
+		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2 - 30, 0, 90, 200000, 8, 3, 230, EnumEnemyType.BOSS, 900, 3, MyColors.BossEnemyColor2);
+		enemy1.hasBeam = true;
+		enemy1.bulletSize = 3;
+		enemy1.barrierPartId = enemy1.partId;
+		stage7.enemyStatus.add(enemy1);
+		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2 + 30, 0, 90, 200000, 8, 3, 220, EnumEnemyType.BOSS, 900, 4, MyColors.BossEnemyColor2);
+		enemy1.hasBeam = true;
+		enemy1.bulletSize = 3;
+		enemy1.barrierPartId = enemy1.partId;
+		stage7.enemyStatus.add(enemy1);
+		
+		// 背面バリアの敵
+		enemy1 = new BossEnemyStatus(0, 60, 1, 1, 1, 1, 999999, EnumEnemyType.BOSS, 1, 100, MyColors.BossEnemyColor2);
+		enemy1.barrierPartId = enemy1.partId;
+		enemy1.posY = 50;
+
+		enemy1.movePattern = 0;
+		stage7.enemyStatus.add(enemy1);
+		
+		// 2体の強めのやつ出現
+		enemy2 = new BossEnemyStatus(3 * (WindowSize.x - 10) / 4, 0, 60, 100000, 6, 4, 115, EnumEnemyType.BOSS, 300, 1, MyColors.BossEnemyColor3);
+		enemy2.bulletSpeed = 7;
+		stage7.enemyStatus.add(enemy2);
+		enemy3 = new BossEnemyStatus((WindowSize.x - 10) / 4, 0, 60, 100000, 6, 3, 120, EnumEnemyType.BOSS, 300, 1, MyColors.BossEnemyColor3);
+		enemy3.bulletSpeed = 8;
+		stage7.enemyStatus.add(enemy3);
+		stageInfos.add(stage7);
+		
+		/*
+		 * Stage8
+		 * player?
+		 */
+		StageInfo stage8 = new StageInfo();
+		stage8.numEnemys = 1;
+		stage8.weakEnemyCoin = 50000;
+		stage8.weakEnemyPower = 8;
+		stage8.weakEnemyRate = 220;
+		stage8.weakEnemyHp = 46;
+		stage8.weakEnemyBulletRate = 28;
+		stage8.weakEnemyColor = MyColors.DefaultEnemyColor;
+		stage8.bgColor = MyColors.WhiteGray;
+		
+		stage8.hasAttacker = true;
+		stage8.attackerCoin = 12000;
+		stage8.attackerPower = 6;
+		stage8.attackerColor = MyColors.DarkGrayEnemyColor;
+		stage8.attackerHp = 15;
+		stage8.attackerRate = 500;
+		stage8.attackerBulletRate = 100;
+		stage8.attackerBarrierPartId = 9;
+		
+		// 真ん中から出現
+		enemy1 = new BossEnemyStatus((WindowSize.x - 10) / 2, 0, 450, 350000, 30, 3, 20, EnumEnemyType.BOSS, 20, 8, MyColors.PlayerColor);
+		enemy1.bulletSpeed = 5;  
+		enemy1.hasBeam = true;
+		enemy1.movePattern = 4;
+		enemy1.isSpecial = true;
+		stage8.enemyStatus.add(enemy1);
+		
+		// 背面バリアの敵
+		enemy1 = new BossEnemyStatus(0, 0, 1, 1, 1, 1, 999999, EnumEnemyType.BOSS, 2200, 100, MyColors.BossEnemyColor2);
+		enemy1.barrierPartId = enemy1.partId;
+		
+		enemy1.posY = 50;
+		enemy1.movePattern = 0;
+		stage8.enemyStatus.add(enemy1);
+		
+		stageInfos.add(stage8);
+		
 	}
 }
 

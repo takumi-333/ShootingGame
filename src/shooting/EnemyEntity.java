@@ -14,15 +14,15 @@ public class EnemyEntity extends Entity{
 	protected int moveRange;
 	protected int moveSpeed;
 	protected EnumEnemyType type;
-	protected int bulletSpeed;
 	protected boolean hasBeam = false;
 	protected int movePattern = 0;
 	
 	// ステータス関連
 	public int power;
 	public int coin;
-	private int bulletSize;
-	private int deltaX;
+	protected int bulletSize;
+	protected int deltaX;
+	public int posY;
 	
 	public EnemyEntity(int x, int y, int coin, int power) {
 		super(x,y);
@@ -55,7 +55,7 @@ public class EnemyEntity extends Entity{
 	}
 	
 	public void setBulletSpeed(int speed) {
-		bulletSpeed = speed;
+		super.bulletSpeed = speed;
 	}
 	
 	public int getCoin() {
@@ -113,10 +113,14 @@ public class EnemyEntity extends Entity{
 					x += moveSpeed;
 				}
 				break;
+				//前衛に出て微動だにしない
 			case ATTACKER:
+				if (y <= 180) {
+					y += 6;
+				}
 				break;
 			case BOSS:
-				if (y <= 100) {
+				if (y <= posY) {
 					y += 3;
 				}
 				else {

@@ -22,6 +22,8 @@ public class BossEnemyStatus {
 	public int bulletSize = 6;
 	public int barrierPartId = 0;
 	public int bulletSpeed = 5;
+	public int posY = 100;
+	public boolean isSpecial = false;
 	
 	public BossEnemyStatus(int x, int y, int hp, int coin, int power, int speed, int bulletRate, EnumEnemyType type, long time, int partId, Color color) {
 		this.x = x;

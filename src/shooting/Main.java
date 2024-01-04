@@ -143,7 +143,7 @@ public class Main {
 			//Debug用
 			if (Keyboard.isKeyPressed(KeyEvent.VK_D)) {
 				System.out.println(startScreenY);
-	        	player.gainCoin(20000);
+//	        	player.gainCoin(20000);
 	        }
 			if (Keyboard.isKeyPressed(KeyEvent.VK_P)) {
 				playerLevel.hasBarrier = true;
@@ -276,7 +276,7 @@ public class Main {
 			// 描画のリセット
 			gra.setColor(MyColors.WhiteGray);
 	        gra.fillRect(0, 0, WindowSize.x, WindowSize.y);
-			StartScreen.render(gra, panel, time, stageId, startScreenY);
+			StartScreen.render(gra, panel, time, stageId, startScreenY, playerLevel);
 			break;
 		case GAME:
 			// 描画のリセット
@@ -470,6 +470,7 @@ public class Main {
 				if (menuCursorInterval <= 0) {
 					int level = playerLevel.getLevelByIndex(selectingLevel);
 					if (level > 1) {
+						player.gainCoin(PlayerParameter.needCoin[level-2]);
 						playerLevel.levelDownByIndex(selectingLevel);
 					}
 					menuCursorInterval = menuCursorRate;
@@ -508,6 +509,10 @@ public class Main {
 				if (menuCursorInterval <= 0) {
 					if (selectingStage > 0) {
 						selectingStage--;
+						menuCursorInterval = menuCursorRate;
+					} 
+					else if (selectingStage == 0) {
+						selectingStage = playerLevel.stageLevel-1;
 						menuCursorInterval = menuCursorRate;
 					}
 				}
